@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add user</title>
+    <style>
+        div {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form th:method="POST" th:action="@{/admin/createUser}" th:object="${addUser}">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    <br>
+    <label for="password">Password</label>
+    <input type="text" th:field="*{pass}" id="password"/>
+    <div th:if="${#fields.hasErrors('pass')}" th:errors="*{pass}"></div>
+    <br>
+    <label for="role">Role</label>
+    <select id="role" name="role[]" multiple>
+        <option value="ROLE_ADMIN">Admin</option>
+        <option value="ROLE_USER">User</option>
+    </select>
+    <div th:if="${#fields.hasErrors('roleSet')}" th:errors="*{roleSet}"></div>
+    <br>
+    <input type="submit" value="add user">
+</form>
+</body>
+</html>
